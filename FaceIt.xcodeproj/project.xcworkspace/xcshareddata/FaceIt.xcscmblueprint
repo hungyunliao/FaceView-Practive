@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DB2E5508A127133C57645354243A28BEE404771D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "498E75459AC25AFD305DEA4EF855BED818D842C3" : 0,
+    "DB2E5508A127133C57645354243A28BEE404771D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F3DD27BB-28C6-45D1-9342-A2C889A07044",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "498E75459AC25AFD305DEA4EF855BED818D842C3" : "",
+    "DB2E5508A127133C57645354243A28BEE404771D" : "FaceIt\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "FaceIt",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "FaceIt.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hungyunliao\/iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "498E75459AC25AFD305DEA4EF855BED818D842C3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hungyunliao\/FaceView-Practive.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DB2E5508A127133C57645354243A28BEE404771D"
+    }
+  ]
+}

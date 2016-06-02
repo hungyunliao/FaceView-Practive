@@ -8,6 +8,7 @@
 
 import Foundation
 
+// a MODEL file
 // UI-independent representation of a facial expression
 
 struct FacialExpression {

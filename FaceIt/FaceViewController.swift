@@ -9,15 +9,65 @@
 import UIKit
 
 class FaceViewController: UIViewController {
-
-    var expression = FacialExpression(eyes: .Open, eyeBrows: .Normal, mouth: .Smile) { // a pointer to the model
-        didSet {
+    
+    // in the controller, declare a model to take the control of it
+    // a pointer to the model
+    var expression = FacialExpression(eyes: .Open, eyeBrows: .Normal, mouth: .Smirk) {
+        didSet { // everytime the model get modified, didset will get called
             updateUI()
         }
     } // expression changes only when the UI is modified at LATER times (when the model is changed), NOT at initial phase
     
-    @IBOutlet weak var faceView: FaceView! { didSet { updateUI() } }// a pointer to the faceview, so now we can talk to the face
-    // didSet will be called when the FaceView is set. Will update when initialized
+    
+    
+    // a pointer to the faceview, so now we can talk to the VIEW
+    // didSet will be called only once when the "faceView" outlet is hooked up with the real "faceView" view.
+    @IBOutlet weak var faceView: FaceView! {
+        didSet {
+            // only VIEW could recognize the gestures.
+            // pinch is changing only the VIEW, not the model, so the target is a VIEW
+            faceView.addGestureRecognizer(UIPinchGestureRecognizer(
+                target: faceView, action: #selector(FaceView.changeScale(_:))
+            )) // selector: handler
+            
+            // Swiping will modify the model, so the target will be controller itself
+            // increaseHappiness takes no argument.
+            let happierSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(FaceViewController.increaseHappiness)
+            )
+            // configure the swipe gesture
+            happierSwipeGestureRecognizer.direction = .Up
+            faceView.addGestureRecognizer(happierSwipeGestureRecognizer)
+            
+            let sadderSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(FaceViewController.decreaseHappiness)
+            )
+            sadderSwipeGestureRecognizer.direction = .Down
+            faceView.addGestureRecognizer(sadderSwipeGestureRecognizer)
+            
+            
+            updateUI()
+        }
+    }
+    
+    
+    // viewcontroller's function that modifies the model "expression"
+    func increaseHappiness() {
+        expression.mouth = expression.mouth.happierMouth()
+    }
+    
+    func decreaseHappiness() {
+        expression.mouth = expression.mouth.sadderMouth()
+    }
+    
+    // do not need to add "addGestureRecognizer" call in the faceView separately. It is automatically added the call
+    @IBAction func toggleEyes(recognizer: UITapGestureRecognizer) {
+        if recognizer.state == .Ended {
+            switch expression.eyes {
+            case .Closed: expression.eyes = .Open
+            case .Open: expression.eyes = .Closed
+            case .Squinting: break
+            }
+        }
+    }
     
     private var mouthCurvature = [
         FacialExpression.Mouth.Frown: -1.0,

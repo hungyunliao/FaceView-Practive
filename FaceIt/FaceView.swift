@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable
+@IBDesignable // to show the face in the Xcode, not in the simulator
 class FaceView: UIView {
     
     /* Public instances */
@@ -25,6 +25,16 @@ class FaceView: UIView {
     var color: UIColor = UIColor.blueColor() { didSet { setNeedsDisplay() } }
     @IBInspectable
     var lineWidth: CGFloat = 5.0
+    
+    func changeScale(recognizer: UIPinchGestureRecognizer) {
+        switch recognizer.state {
+        case .Changed, .Ended:
+            scale *= recognizer.scale
+            recognizer.scale = 1
+        default:
+            break
+        }
+    }
     
     
     /* Private instances */

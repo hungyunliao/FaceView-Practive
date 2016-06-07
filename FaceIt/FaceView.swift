@@ -52,7 +52,7 @@ class FaceView: UIView {
     }
     
     private var skullCenter: CGPoint {
-        return CGPoint(x: bounds.midX, y: bounds.midY)
+        return CGPoint(x: bounds.midX, y: frame.midY)
     }
     // also works: var skullCenter = convertPoint(center, fromView: superview)
     

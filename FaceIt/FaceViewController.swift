@@ -10,6 +10,7 @@ import UIKit
 
 class FaceViewController: UIViewController {
     
+    // MARK: Model
     // in the controller, declare a model to take the control of it
     // a pointer to the model
     var expression = FacialExpression(eyes: .Open, eyeBrows: .Normal, mouth: .Smirk) {
@@ -19,7 +20,7 @@ class FaceViewController: UIViewController {
     } // expression changes only when the UI is modified at LATER times (when the model is changed), NOT at initial phase
     
     
-    
+    // MARK: Controller
     // a pointer to the faceview, so now we can talk to the VIEW
     // didSet will be called only once when the "faceView" outlet is hooked up with the real "faceView" view.
     @IBOutlet weak var faceView: FaceView! {
@@ -84,14 +85,16 @@ class FaceViewController: UIViewController {
     ]
     
     private func updateUI() {
-        switch expression.eyes {
-        case .Open: faceView.eyeOpen = true
-        case .Closed: faceView.eyeOpen = false
-        case .Squinting: faceView.eyeOpen = false
+        if faceView != nil { // will be runtime error if it is not set, because the segues prepartion will be called BEFORE the outlet is hooked up, and the faceView is nil.
+            switch expression.eyes {
+            case .Open: faceView.eyeOpen = true
+            case .Closed: faceView.eyeOpen = false
+            case .Squinting: faceView.eyeOpen = false
+            }
+            
+            faceView.mouthCurvature = mouthCurvature[expression.mouth] ?? 0.0
+            faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
         }
-        
-        faceView.mouthCurvature = mouthCurvature[expression.mouth] ?? 0.0
-        faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
     }
 }
 
